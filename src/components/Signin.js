@@ -3,7 +3,7 @@ import Logo from "../talk_logo.png"
 
 // import styled from "styled-components";
 
-const Login = () => {
+const Signin = () => {
   return (
     <div>
         
@@ -15,4 +15,4 @@ const Login = () => {
     </div>
   )
   }
-export default Login;
+export default Signin;

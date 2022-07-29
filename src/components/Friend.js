@@ -3,24 +3,65 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
+// Components 연결
+import MyProfile from '../elements/MyProfile'
+import FriendProfile from '../elements/FriendProfile'
+import Button from '../elements/Button'
+import FriendModal from '../elements/FriendModal'
+
 const Friend = () => {
+
+  const [ addFriend, setAddFriend ] = React.useState(false)
+
+  const addFriendBtn = () => {
+    setAddFriend(true);
+  }
+  console.log(addFriend)
+
   return (
     <Wrap>
       <Header>
         <Title>
           <h1>친구</h1>
         </Title>
-        <AddBtn>
+        <AddBtn onClick={addFriendBtn}>
           <FontAwesomeIcon icon={faUserPlus} />
         </AddBtn>
       </Header>
+      <MyProfile />
+      <SubTitle>
+        <p>친구</p>
+      </SubTitle>
+      <FriendList>
+        <FriendProfile />
+        <FriendProfile />
+        <FriendProfile />
+        <FriendProfile />
+        <FriendProfile />
+        <FriendProfile />
+        <FriendProfile />
+        <FriendProfile />
+        <FriendProfile />
+        <FriendProfile />
+        <FriendProfile />
+        <FriendProfile />
+      </FriendList>
+      {
+        addFriend ? 
+        (
+          <FriendModal setAddFriend={setAddFriend} />
+        ) : 
+        (
+          null
+        )
+      }
     </Wrap>
   )
 }
 
 const Wrap = styled.div`
-  width: 100%;
-  height: 100vh;
+  max-width: 320px;
+  height: 100%;
   margin: 0 auto;
 `
 
@@ -28,7 +69,7 @@ const Header = styled.div`
   position: relative;
   width: 90%;
   height: 70px;
-  border-bottom: 1px solid #5E5E5E;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -59,9 +100,32 @@ const AddBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #5E5E5E;
+  color: rgba(0, 0, 0, 0.5);
   font-size: 20px;
+  transition: 0.3s;
   cursor: pointer;
+  &:hover {
+    color: rgba(0, 0, 0, 1);
+  }
+`
+
+const SubTitle = styled.div`
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  p {
+    margin: 0;
+    margin-left: 10px;
+    padding: 6px 0;
+    font-size: 12px;
+    color: #5E5E5E;
+  }
+`
+
+const FriendList = styled.div`
+  width: 100%;
 `
 
 export default Friend
