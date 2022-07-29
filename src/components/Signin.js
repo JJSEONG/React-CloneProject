@@ -1,6 +1,5 @@
 import React from "react";
-
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // 로고 이미지
 import Logo from "../talk_logo.png";
