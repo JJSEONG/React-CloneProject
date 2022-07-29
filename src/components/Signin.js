@@ -1,9 +1,16 @@
 import React from "react";
+
+import { Link } from 'react-router-dom';
+
+// 로고 이미지
 import Logo from "../talk_logo.png";
 
+// 스타일 관련
 import styled from "styled-components";
 
-const Login = () => {
+
+
+const Signin = () => {
   return (
     <>
       {/* Logo */}
@@ -17,20 +24,22 @@ const Login = () => {
           marginBottom: "8%",
         }}
       />
-      <LoginFormBox>
+      <SigninFormBox>
         {/* ID */}
         <IdInput placeholder="카카오계정(이메일)" />
         {/* PW */}
         <PwInput placeholder="비밀번호" />
         {/* Signin Button - Friend 페이지로 이동 */}
-        <LoginBtn>로그인</LoginBtn>
-      </LoginFormBox>
+        <SigninBtn>로그인</SigninBtn>
+      </SigninFormBox>
 
       <GoingToSignupBox>
         <GoingToSignupText>
           계정이 없으신가요?
           {/* Signup 페이지로 이동 */}
-          <span>회원가입</span>
+          <Link to="/signup" style={{ textDecoration: "none" }}>
+            <span>회원가입</span>
+          </Link>  
         </GoingToSignupText>
       </GoingToSignupBox>
     </>
@@ -38,7 +47,7 @@ const Login = () => {
 };
 
 // styled components
-const LoginFormBox = styled.div`
+const SigninFormBox = styled.div`
   width: 230px;
   height: 95px;
   margin: 0% auto;
@@ -68,7 +77,7 @@ const PwInput = styled.input`
   color: #7d7d7d;
 `;
 
-const LoginBtn = styled.button`
+const SigninBtn = styled.button`
   width: 230px;
   height: 50px;
   background: #38302b;
@@ -98,4 +107,4 @@ const GoingToSignupText = styled.p`
   color: #7d7d7d;
 `;
 
-export default Login;
+export default Signin;
