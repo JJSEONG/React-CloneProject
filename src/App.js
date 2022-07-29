@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 import Friend from './components/Friend';
-import Chat from './components/Chat'
+import Chat from './components/Chat';
 
 //스타일 관련
 import "./App.css";
