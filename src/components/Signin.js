@@ -82,6 +82,7 @@ const IdInput = styled.input`
   background-color: #fff;
   font-size: 13px;
   border-radius: 6px 6px 0px 0px;
+  outline: none;
   padding-left: 8%;
   box-sizing: border-box;
   color: #7d7d7d;
@@ -94,6 +95,7 @@ const PwInput = styled.input`
   background-color: #fff;
   font-size: 13px;
   border-radius: 0px 0px 6px 6px;
+  outline: none;
   padding-left: 8%;
   box-sizing: border-box;
   color: #7d7d7d;
@@ -106,6 +108,7 @@ const SigninBtn = styled.button`
   color: #fae300;
   font-size: 18px;
   font-weight: 800;
+  outline: none;
   border-radius: 8px;
   margin-top: 5%;
   border: none;
