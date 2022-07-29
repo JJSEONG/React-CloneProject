@@ -60,7 +60,7 @@ const Friend = () => {
 }
 
 const Wrap = styled.div`
-  max-width: 320px;
+  width: 320px;
   height: 100%;
   margin: 0 auto;
 `
