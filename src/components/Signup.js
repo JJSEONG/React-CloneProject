@@ -1,14 +1,27 @@
 import React from "react";
 
-// 로고 이미지
+// 로고
 import Logo from "../talk_logo.png";
+
+// 아이콘
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 // 스타일 관련
 import styled from "styled-components";
 
 const Signup = () => {
   return (
-    <>
+    <div style={{ position: "relative", width: "320px", margin: "0 auto" }}>
+      <FontAwesomeIcon
+        icon={faAngleLeft}
+        style={{
+          position: "absolute",
+          top: "20px",
+          left: "20px",
+          fontSize: "1.2rem",
+        }}
+      />
       <TitleBox>
         {/* Logo */}
         <img
@@ -21,10 +34,9 @@ const Signup = () => {
         />
         <Title>회원가입</Title>
       </TitleBox>
-      
+
       {/* 회원가입 입력창 */}
       <SignupForm>
-
         {/* 아이디 */}
         <IdBox>
           <IdInput type="text" placeholder="아이디를 입력하세요." />
@@ -41,9 +53,8 @@ const Signup = () => {
 
         {/* Signin Button - Friend 페이지로 이동 */}
         <SignupBtn>회원가입</SignupBtn>
-
       </SignupForm>
-    </>
+    </div>
   );
 };
 
