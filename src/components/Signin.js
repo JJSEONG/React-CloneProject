@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Link } from 'react-router-dom';
 
 // 로고 이미지
@@ -7,8 +6,6 @@ import Logo from "../talk_logo.png";
 
 // 스타일 관련
 import styled from "styled-components";
-
-
 
 const Signin = () => {
   return (
