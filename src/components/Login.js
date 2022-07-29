@@ -1,4 +1,5 @@
 import React from "react";
+import Logo from "../talk_logo.png"
 
 // import styled from "styled-components";
 
@@ -6,7 +7,10 @@ const Login = () => {
   return (
     <div>
         
-    <img src={process.env.PUBLIC_URL + "/icons/kokoatalk_logo.png"} style=></img> 
+    <img src= {Logo} alt="logo" style={{
+        width: "133px",
+        height: "133px"
+    }}/> 
 
     </div>
   )
