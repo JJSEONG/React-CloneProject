@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // 로고 이미지
 import Logo from "../talk_logo.png";
@@ -8,6 +8,17 @@ import Logo from "../talk_logo.png";
 import styled from "styled-components";
 
 const Signin = () => {
+  const signinId = React.useRef(null);
+  const signinPw = React.useRef(null);
+
+  const submitToSiginIn = (e) => {
+    e.preventDefault();
+    const username = signinId.current.value;
+    const password = signinPw.current.value;
+    console.log(username, password);
+
+    // const userData = { username, password };
+  };
   return (
     <Wrap>
       <ContentsWrap>
@@ -22,11 +33,15 @@ const Signin = () => {
             }}
           />
         </div>
-        <SigninFormBox>
+        <SigninFormBox onSubmit={submitToSiginIn}>
           {/* ID */}
-          <IdInput placeholder="카카오계정(이메일)" />
+          <IdInput
+            type="text"
+            placeholder="카카오계정(이메일)"
+            ref={signinId}
+          />
           {/* PW */}
-          <PwInput placeholder="비밀번호" />
+          <PwInput type="password" placeholder="비밀번호" ref={signinPw} />
           {/* Signin Button - Friend 페이지로 이동 */}
           <SigninBtn>로그인</SigninBtn>
         </SigninFormBox>
@@ -65,7 +80,7 @@ const ContentsWrap = styled.div`
   flex-direction: column;
 `;
 
-const SigninFormBox = styled.div`
+const SigninFormBox = styled.form`
   width: 90%;
   height: 100%;
   margin: 0% auto;
@@ -112,6 +127,9 @@ const SigninBtn = styled.button`
   border-radius: 8px;
   margin-top: 5%;
   border: none;
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 const GoingToSignupBox = styled.div`
@@ -126,8 +144,13 @@ const GoingToSignupText = styled.p`
     font-weight: 900;
     font-size: 0.75rem;
     color: #575757;
+    margin-left: 3%;
+    &:hover{
+      color: #000000;
+      border-bottom: 1px solid #333;
+    }
   }
-  color: #7d7d7d;
+  color: #444;
 `;
 
 export default Signin;
