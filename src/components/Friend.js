@@ -6,7 +6,6 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 // Components 연결
 import MyProfile from '../elements/MyProfile'
 import FriendProfile from '../elements/FriendProfile'
-import Button from '../elements/Button'
 import FriendModal from '../elements/FriendModal'
 
 const Friend = () => {

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 // 로고
 import Logo from "../talk_logo.png";
@@ -10,22 +11,44 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 // 스타일 관련
 import styled from "styled-components";
 
-
-
 const Signup = () => {
+  const navigate = useNavigate();
+
+  const signupId = React.useRef(null); // Id
+  const signupName = React.useRef(null); // Name
+  const signupNick = React.useRef(null); // Nickname
+  const signupPw = React.useRef(null); // Password
+  const signupPwCheck = React.useRef(null); // Check Password
+
+  const submitToSignup = async (e) => {
+    e.preventDefault();
+    const username = signupId.current.value;
+    const name = signupName.current.value;
+    const nickname = signupNick.current.value;
+    const password = signupPw.current.value;
+    const checkPassword = signupPwCheck.current.value;
+
+    console.log(username, name, nickname, password, checkPassword);
+
+    // 유효성 검사하기
+  };
+
+  // axios 사용할 자리
+
   return (
     <Wrap>
       <ContentsBox>
         <TitleBox>
-          {/* <FontAwesomeIcon
-        icon={faAngleLeft}
-        style={{
-          position: "absolute",
-          top: "20px",
-          left: "20px",
-          fontSize: "1.2rem",
-        }}
-      /> */}
+          {/* 뒤로가기 Icon */}
+          <FontAwesomeIcon
+            className="BackIcon"
+            onClick={() => navigate("/")}
+            icon={faAngleLeft}
+            style={{
+              position: "absolute",
+              left: "10%",
+            }}
+          />
           {/* Logo */}
           <img
             src={Logo}
@@ -39,32 +62,48 @@ const Signup = () => {
         </TitleBox>
 
         {/* 회원가입 입력창 */}
-        <SignupForm>
+        <SignupForm onSubmit={(e) => submitToSignup(e)}>
           {/* 아이디 */}
           <IdBox>
-            <IdInput type="text" placeholder="아이디를 입력하세요." />
+            <IdInput
+              type="text"
+              placeholder="아이디를 입력하세요."
+              ref={signupId}
+            />
             <IdInputConfirm>중복확인</IdInputConfirm>
           </IdBox>
           {/* 이름 */}
-          <NameInput type="text" placeholder="이름을 입력하세요." />
+          <NameInput
+            type="text"
+            placeholder="이름을 입력하세요."
+            ref={signupName}
+          />
           {/* 닉네임 */}
-          <NicknameInput type="text" placeholder="닉네임을 입력하세요." />
+          <NicknameInput
+            type="text"
+            placeholder="닉네임을 입력하세요."
+            ref={signupNick}
+          />
           {/* 비밀번호 */}
-          <PwInput type="password" placeholder="비밀번호를 입력하세요." />
+          <PwInput
+            type="password"
+            placeholder="비밀번호를 입력하세요."
+            ref={signupPw}
+          />
           {/* 비밀번호 확인 */}
           <PwConfirmInput
             type="password"
             placeholder="비밀번호를 확인해주세요."
+            ref={signupPwCheck}
           />
 
-          {/* Signin Button - Friend 페이지로 이동 */}
+          {/* SignUp Button - Signin 페이지로 이동 (axios에서 처리할까?..) */}
           <SignupBtn>회원가입</SignupBtn>
         </SignupForm>
       </ContentsBox>
     </Wrap>
   );
 };
-
 
 // styled components
 const Wrap = styled.div`
@@ -89,6 +128,7 @@ const TitleBox = styled.div`
   width: 100%;
   height: 52px;
   margin-bottom: 30px;
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -140,6 +180,9 @@ const IdInputConfirm = styled.button`
   border-radius: 0px 8px 8px 0px;
   border: 1px solid #d2d2d2;
   border-left: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const NameInput = styled.input`
@@ -201,6 +244,9 @@ const SignupBtn = styled.button`
   border-radius: 8px;
   margin-top: 5%;
   border: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default Signup;
