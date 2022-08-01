@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // 로고
 import Logo from "../talk_logo.png";
-// 기본 프로필 사진
-import profile_img from "../profile_img.jpeg"
+
 // 아이콘
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
@@ -22,6 +21,12 @@ const Signup = () => {
   const signupPw = React.useRef(null); // Password
   const signupPwCheck = React.useRef(null); // Check Password
 
+  let sessionStorage = window.sessionStorage;
+
+  useEffect(() => {
+    sessionStorage.setItem("checkUsername", false)
+  }, [])
+
   const submitToSignup = async (e) => {
     e.preventDefault();
     const username = signupId.current.value;
@@ -29,32 +34,87 @@ const Signup = () => {
     const nickname = signupNick.current.value;
     const password = signupPw.current.value;
     const checkPassword = signupPwCheck.current.value;
-
+    
     console.log(username, name, nickname, password, checkPassword);
+
+    let sessionStorage = window.sessionStorage;
     
     // axios 회원가입 요청
-    const profileImg = ({profile_img});
     try {
       await axios({
         method: "post",
-        url: "...",
+        url: "http://3.37.61.221/api/user/join",
         data: {
           username: username,
-          realname: name,
+          realname: name, 
           nickname: nickname,
           password: password,
           checkPassword: checkPassword,
-          profilImage: { profileImg},
+          profilImage: "https://horang2film.co.kr/common/img/default_profile.png",
+          checkUsername: sessionStorage.getItem("checkUsername")
         },
-      }).then((Response) => console.log(Response));
-      navigate("/");
-    } catch (error) {
-      alert(error.respnse.data.message);
-      // console.log(error);
-    }
+      }).then((response) => {
+          // 유효성 검사하기
+          console.log(response)
 
-    // 유효성 검사하기
+          if(response.status === 200 && response.data === '아이디를 3자 이상 입력하세요') {
+            window.alert(response.data)
+            return;
+          } else if(response.status === 200 && name === "" ) { 
+            window.alert("이름을 입력해주세요.")
+            return;
+          } else if(response.status === 200 && nickname === "") {
+            window.alert("닉네임을 입력해주세요")
+            return;
+          } else if(response.status === 200 && response.data === '비밀번호를 4자 이상 입력하세요') {
+            window.alert(response.data)
+            return;
+          } else if(response.status === 200 && response.data === '비밀번호가 일치하지 않습니다') {
+            window.alert(response.data)
+            return;
+          } else if(response.status === 200 && response.data === '중복된 id 입니다.') {
+            window.alert(response.data)
+            return;
+          } else if(response.status === 200 && response.data === '중복된 nickname 입니다.') {
+            window.alert(response.data)
+            return;
+          } else if(response.status === 200 && response.data === "비밀번호에 아이디를 포함할 수 없습니다.") {
+            window.alert(response.data)
+            return;
+          }else if(response.status === 200 && response.data === "아이디 중복 확인") {
+            signupId.current.focus();
+            window.alert("ID 중복확인을 진행 후 가입을 완료해주세요.")
+            return;
+          } else {
+            window.alert(`${nickname}님💚 \n회원가입 축하드립니다.`)
+            sessionStorage.removeItem("checkUsername");
+            navigate("/")
+          }
+        }
+      );
+    } catch (error) {
+      // alert(error.respnse.data.message);
+      console.log(error);
+    }
   };
+
+  const IdCheck = async (e) => {
+    e.preventDefault();
+    const username = signupId.current.value;
+
+    const res = await axios.post("http://3.37.61.221/api/user/username", {
+      username: username
+    })
+    console.log(res)
+    if(res.data === "사용 할 수 있는 아이디 입니다.") {
+      sessionStorage.setItem("checkUsername", true)
+      window.alert(res.data)
+    } else {
+      sessionStorage.setItem("checkUsername", false)
+      signupId.current.focus();
+      alert(res.data)
+    }
+  }
 
   return (
     <Wrap>
@@ -91,7 +151,7 @@ const Signup = () => {
               placeholder="아이디를 입력하세요."
               ref={signupId}
             />
-            <IdInputConfirm>중복확인</IdInputConfirm>
+            <IdInputConfirm onClick={IdCheck}>중복확인</IdInputConfirm>
           </IdBox>
           {/* 이름 */}
           <NameInput
