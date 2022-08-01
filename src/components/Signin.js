@@ -26,7 +26,7 @@ const Signin = () => {
         if (res.status === 200 && res.headers.authorization) {
           sessionStorage.setItem("token", res.headers.authorization);
           window.alert(`${username.current.value}님 \n로그인 하셨습니다.`);
-          navigate("/selecthing");
+          navigate("/Friend");
         } else {
           window.alert("ID와 PW를 다시 한번 확인해주세요.");
         }
