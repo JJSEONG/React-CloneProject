@@ -28,7 +28,7 @@ const Signin = () => {
       if(res.status === 200 && res.headers.authorization) {
         sessionStorage.setItem("token", res.headers.authorization)
         window.alert(`${username.current.value}님\n코코아톡 로그인에 성공하셨습니다.`)
-        navigate("/id/friendList")
+        navigate("/friendList")
       }
     } catch(error) {
       console.log(error)
