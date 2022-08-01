@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { axios } from "axios";
+import axios from "axios";
 
 // 로고 이미지
 import Logo from "../talk_logo.png";
@@ -18,7 +18,7 @@ const Signin = () => {
 
     const axiosSignin = async () => {
       try {
-        const res = await axios.post("...", {
+        const res = await axios.post("http://3.37.61.221/api/user/login", {
           username: username.current.value,
           password: password.current.value,
         });
@@ -43,7 +43,9 @@ const Signin = () => {
   return (
     <Wrap>
       <ContentsWrap>
-        <div style={{ width: "133px", height: "133px", marginBottom: "40px" }}>
+        <div style={{
+            width: "133px", height: "133px", marginBottom: "40px" 
+          }}>
           {/* Logo */}
           <img
             src={Logo}
