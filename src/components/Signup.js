@@ -1,15 +1,17 @@
 import React from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // 로고
 import Logo from "../talk_logo.png";
-
+// 기본 프로필 사진
+import profile_img from "../profile_img.jpeg"
 // 아이콘
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
-// 스타일 관련
 import styled from "styled-components";
+
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -29,11 +31,30 @@ const Signup = () => {
     const checkPassword = signupPwCheck.current.value;
 
     console.log(username, name, nickname, password, checkPassword);
+    
+    // axios 회원가입 요청
+    const profileImg = ({profile_img});
+    try {
+      await axios({
+        method: "post",
+        url: "...",
+        data: {
+          username: username,
+          name: name,
+          nickname: nickname,
+          password: password,
+          checkPassword: checkPassword,
+          profilImage: { profileImg},
+        },
+      }).then((Response) => console.log(Response));
+      navigate("/");
+    } catch (error) {
+      alert(error.respnse.data.message);
+      // console.log(error);
+    }
 
     // 유효성 검사하기
   };
-
-  // axios 사용할 자리
 
   return (
     <Wrap>
