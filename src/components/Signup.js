@@ -57,8 +57,8 @@ const Signup = () => {
           // 유효성 검사하기
           console.log(response)
 
-          if(response.status === 200 && response.data === '아이디를 3자 이상 입력하세요') {
-            window.alert(response.data)
+          if(response.status === 200 && response.data === '아이디를 3자 이상 입력하세요.') {
+            window.alert("아이디를 3자 이상 이메일 형식으로 입력하세요.") 
             return;
           } else if(response.status === 200 && name === "" ) { 
             window.alert("이름을 입력해주세요.")
@@ -75,7 +75,7 @@ const Signup = () => {
           } else if(response.status === 200 && response.data === '중복된 id 입니다.') {
             window.alert(response.data)
             return;
-          } else if(response.status === 200 && response.data === '중복된 nickname 입니다.') {
+          } else if(response.status === 200 && response.data === '이메일 형식으로 입력 하세요.') {
             window.alert(response.data)
             return;
           } else if(response.status === 200 && response.data === "비밀번호에 아이디를 포함할 수 없습니다.") {
