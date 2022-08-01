@@ -40,7 +40,7 @@ const Signup = () => {
         url: "...",
         data: {
           username: username,
-          name: name,
+          realname: name,
           nickname: nickname,
           password: password,
           checkPassword: checkPassword,

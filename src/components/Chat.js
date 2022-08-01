@@ -103,10 +103,6 @@ const SubmitBtn = styled.button`
   color: #939393;
 `;
 
-<<<<<<< HEAD
-export default Chat
-
-
-=======
 export default Chat;
->>>>>>> 14857ba16041aba45dc5d16768d1aaba6a151935
+
+
