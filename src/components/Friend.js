@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
 
 // Components 연결
 import MyProfile from '../elements/MyProfile'
@@ -10,12 +11,28 @@ import FriendModal from '../elements/FriendModal'
 
 const Friend = () => {
 
+  useEffect(() => {
+    LoadFriend()
+  }, [])
+
   const [ addFriend, setAddFriend ] = React.useState(false)
 
   const addFriendBtn = () => {
     setAddFriend(true);
   }
   console.log(addFriend)
+
+  let sessionStorage = window.sessionStorage
+
+  const token = sessionStorage.getItem("token")
+  const LoadFriend = async () => {
+    const res = await axios.get("http://3.37.61.221/api/friend/list", {
+      headers : {
+        Authorization: token
+      }
+    })
+    console.log(res)
+  }
 
   return (
     <Wrap>

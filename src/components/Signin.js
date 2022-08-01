@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { axios } from "axios";
+import axios from "axios";
 
 // 로고 이미지
 import Logo from "../talk_logo.png";
@@ -14,31 +14,27 @@ const Signin = () => {
 
   const username = React.useRef(null);
   const password = React.useRef(null);
-    // const userData = { username, password };
+  // const userData = { username, password };
+  const navigate = useNavigate();
 
-    const axiosSignin = async () => {
-      try {
-        const res = await axios.post("...", {
-          username: username.current.value,
-          password: password.current.value,
-        });
-        // console.log(res.headers.authorization)
-        if (res.status === 200 && res.headers.authorization) {
-          sessionStorage.setItem("token", res.headers.authorization);
-          window.alert(`${username.current.value}님 \n로그인 하셨습니다.`);
-          navigate("/Friend");
-        } else {
-          window.alert("ID와 PW를 다시 한번 확인해주세요.");
-        }
-      } catch (error) {
-        // console.log(error);
-        window.alert("ID와 PW를 다시 한번 확인해주세요.");
-        window.location.reload();
-        // window.alert("아이디, 비밀번호를 확인해주세요!");
+  const axiosSignin = async (e) => {
+
+    e.preventDefault()
+    try {
+      const res = await axios.post("http://3.37.61.221:8080/login", {
+        username: username.current.value,
+        password: password.current.value,
+      });
+      if(res.status === 200 && res.headers.authorization) {
+        sessionStorage.setItem("token", res.headers.authorization)
+        window.alert(`${username.current.value}님\n코코아톡 로그인에 성공하셨습니다.`)
+        navigate("/friendList")
       }
-    
-   };
-    const navigate = useNavigate();
+    } catch(error) {
+      console.log(error)
+      window.alert("ID와 PW를 다시 확인해주세요.")
+    }
+  };
  
   return (
     <Wrap>
@@ -54,17 +50,13 @@ const Signin = () => {
             }}
           />
         </div>
-        <SigninFormBox>
+        <SigninFormBox onSubmit={axiosSignin}>
           {/* ID */}
-          <IdInput
-            type="text"
-            placeholder="카카오계정(이메일)"
-            ref={username}
-          />
+          <IdInput type="text" placeholder="카카오계정(이메일)" ref={username} />
           {/* PW */}
           <PwInput type="password" placeholder="비밀번호" ref={password} />
           {/* Signin Button - Friend 페이지로 이동 */}
-          <SigninBtn onClick={() => { axiosSignin(); }}>로그인</SigninBtn>
+          <SigninBtn>로그인</SigninBtn>
         </SigninFormBox>
 
         <GoingToSignupBox>
