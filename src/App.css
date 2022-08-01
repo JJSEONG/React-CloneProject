@@ -1,5 +1,9 @@
-* {
+body {
   background-color: #fae300;
+}
+
+.BackIcon:hover{
+  cursor: pointer;
 }
 
 .App {

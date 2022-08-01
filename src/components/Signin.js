@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
+import { axios } from "axios";
 
 // 로고 이미지
 import Logo from "../talk_logo.png";
@@ -7,7 +8,38 @@ import Logo from "../talk_logo.png";
 // 스타일 관련
 import styled from "styled-components";
 
+
 const Signin = () => {
+  let sessionStorage = window.sessionStorage;
+
+  const username = React.useRef(null);
+  const password = React.useRef(null);
+    // const userData = { username, password };
+
+    const axiosSignin = async () => {
+      try {
+        const res = await axios.post("...", {
+          username: username.current.value,
+          password: password.current.value,
+        });
+        // console.log(res.headers.authorization)
+        if (res.status === 200 && res.headers.authorization) {
+          sessionStorage.setItem("token", res.headers.authorization);
+          window.alert(`${username.current.value}님 \n로그인 하셨습니다.`);
+          navigate("/selecthing");
+        } else {
+          window.alert("ID와 PW를 다시 한번 확인해주세요.");
+        }
+      } catch (error) {
+        // console.log(error);
+        window.alert("ID와 PW를 다시 한번 확인해주세요.");
+        window.location.reload();
+        // window.alert("아이디, 비밀번호를 확인해주세요!");
+      }
+    
+   };
+    const navigate = useNavigate();
+ 
   return (
     <Wrap>
       <ContentsWrap>
@@ -24,11 +56,15 @@ const Signin = () => {
         </div>
         <SigninFormBox>
           {/* ID */}
-          <IdInput placeholder="카카오계정(이메일)" />
+          <IdInput
+            type="text"
+            placeholder="카카오계정(이메일)"
+            ref={username}
+          />
           {/* PW */}
-          <PwInput placeholder="비밀번호" />
+          <PwInput type="password" placeholder="비밀번호" ref={password} />
           {/* Signin Button - Friend 페이지로 이동 */}
-          <SigninBtn>로그인</SigninBtn>
+          <SigninBtn onClick={() => { axiosSignin(); }}>로그인</SigninBtn>
         </SigninFormBox>
 
         <GoingToSignupBox>
@@ -65,7 +101,7 @@ const ContentsWrap = styled.div`
   flex-direction: column;
 `;
 
-const SigninFormBox = styled.div`
+const SigninFormBox = styled.form`
   width: 90%;
   height: 100%;
   margin: 0% auto;
@@ -112,6 +148,9 @@ const SigninBtn = styled.button`
   border-radius: 8px;
   margin-top: 5%;
   border: none;
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 const GoingToSignupBox = styled.div`
@@ -126,8 +165,13 @@ const GoingToSignupText = styled.p`
     font-weight: 900;
     font-size: 0.75rem;
     color: #575757;
+    margin-left: 3%;
+    &:hover{
+      color: #000000;
+      border-bottom: 1px solid #333;
+    }
   }
-  color: #7d7d7d;
+  color: #444;
 `;
 
 export default Signin;
