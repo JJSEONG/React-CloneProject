@@ -1,18 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import MyImg from '../profile_img.jpeg'
+import MyImg from "../profile_img.jpeg";
 
 const FriendMessage = () => {
   return (
     <Wrap>
-         <ImgWrap>
+      {/* <MessageBox> */}
+        <ImgWrap>
           <img src={MyImg} alt="프로필 이미지" />
         </ImgWrap>
-
+        {/* <Ments/>
+      </MessageBox> */}
     </Wrap>
-  )
-}
+  );
+};
 
 // styled components 적용
 const Wrap = styled.div`
@@ -28,6 +30,6 @@ const ImgWrap = styled.div`
     width: 100%;
     height: 100%;
   }
-`
+`;
 
 export default FriendMessage;
