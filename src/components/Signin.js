@@ -39,7 +39,9 @@ const Signin = () => {
   return (
     <Wrap>
       <ContentsWrap>
-        <div style={{ width: "133px", height: "133px", marginBottom: "40px" }}>
+        <div style={{
+            width: "133px", height: "133px", marginBottom: "40px" 
+          }}>
           {/* Logo */}
           <img
             src={Logo}
