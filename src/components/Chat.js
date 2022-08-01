@@ -104,5 +104,3 @@ const SubmitBtn = styled.button`
 `;
 
 export default Chat;
-
-
