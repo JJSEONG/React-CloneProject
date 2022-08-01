@@ -17,7 +17,7 @@ function App() {
         {/* 홈 화면 - SigninPage */}
         <Route index element={<Signin />} />
         <Route path="/signup" element={ <Signup /> } />
-        <Route path="/:my_id/friendList" element={ <Friend /> } />
+        <Route path="/friendList" element={ <Friend /> } />
         <Route path="/:my_id/:friend_id/chat" element={ <Chat /> } />
       </Routes>
     </div>
