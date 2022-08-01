@@ -1,0 +1,313 @@
+[33mcommit 4c7cd509b2a3914e2e0867a56132449c0d39986c[m[33m ([m[1;36mHEAD -> [m[1;32mSH[m[33m, [m[1;31morigin/SH[m[33m)[m
+Merge: 51828f5 26fc5a9
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Mon Aug 1 15:21:51 2022 +0900
+
+    Merge branch 'SH' of https://github.com/JJSEONG/React-CloneProject into SH
+
+[33mcommit 26fc5a9283a09fa0dc02810eb4305d415ac0d367[m
+Merge: aa447ff feffc86
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Mon Aug 1 15:20:41 2022 +0900
+
+    Merge pull request #18 from JJSEONG/master
+    
+    Merge pull request #17 from JJSEONG/SH
+
+[33mcommit 51828f5d86ae6b8697052d9dc52bd76349a9458a[m
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Mon Aug 1 15:19:15 2022 +0900
+
+    test
+
+[33mcommit feffc8614c491117ffa1b1af641d52c1291441f3[m
+Merge: 3d2eaf9 aa447ff
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Mon Aug 1 15:01:25 2022 +0900
+
+    Merge pull request #17 from JJSEONG/SH
+    
+    Merge pull request #16 from JJSEONG/master
+
+[33mcommit b3766ee4d4a1fdfae00ce727153bfd927a7eeb13[m
+Merge: 7e61e18 3d2eaf9
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Mon Aug 1 14:59:37 2022 +0900
+
+    pust
+
+[33mcommit 7e61e18f19fa612fa8d53793e138222f561a3887[m
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Mon Aug 1 14:55:27 2022 +0900
+
+    test
+
+[33mcommit aa447ff3bfdeecfd1ddc38e42b4255d569c65d0a[m
+Merge: a4e9984 3d2eaf9
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Mon Aug 1 14:46:20 2022 +0900
+
+    Merge pull request #16 from JJSEONG/master
+    
+    signup 유효성검사 수정 반영
+
+[33mcommit 3d2eaf9a061cd08d8bf0ca404ae71d5ce6c69160[m
+Merge: c2a30f4 e02aea4
+Author: JongSeong Jeong <94487454+JJSEONG@users.noreply.github.com>
+Date:   Mon Aug 1 14:44:25 2022 +0900
+
+    Merge pull request #15 from JJSEONG/JS
+    
+    Create SignUp 기능 구현
+
+[33mcommit e02aea4e42edc124876265251234d3bcd26a52e0[m[33m ([m[1;31morigin/JS[m[33m)[m
+Author: JJSEONG <hans3238@naver.com>
+Date:   Mon Aug 1 14:44:04 2022 +0900
+
+    Create SignUp 기능 구현
+
+[33mcommit c2a30f4a9446c6b8cf83c314530df8a12601b4ae[m
+Merge: 14857ba d9870fb
+Author: JongSeong Jeong <94487454+JJSEONG@users.noreply.github.com>
+Date:   Mon Aug 1 10:06:22 2022 +0900
+
+    Merge pull request #14 from JJSEONG/JS
+    
+    Js
+
+[33mcommit d9870fb59fd1aa977a96a2523a502c8247ef5f0b[m
+Merge: 335e9f5 14857ba
+Author: JJSEONG <hans3238@naver.com>
+Date:   Mon Aug 1 10:05:53 2022 +0900
+
+    Create axios Code
+
+[33mcommit 335e9f5e4645178c6ce0e08f1230a7bad23d30bf[m
+Author: JJSEONG <hans3238@naver.com>
+Date:   Mon Aug 1 10:05:04 2022 +0900
+
+    Create Friend List
+
+[33mcommit 14857ba16041aba45dc5d16768d1aaba6a151935[m
+Merge: 965902d a4e9984
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Mon Aug 1 10:04:28 2022 +0900
+
+    Merge pull request #13 from JJSEONG/SH
+    
+    axios 코드 추가
+
+[33mcommit a4e9984ab9683e8da3e42920e2553cd1ab9b82a1[m
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Mon Aug 1 10:02:52 2022 +0900
+
+    axios 코드 추가
+
+[33mcommit 965902d4556d4efe743c42b48557589f0513080c[m
+Merge: 47201e7 002597c
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Sat Jul 30 21:47:53 2022 +0900
+
+    Merge pull request #12 from JJSEONG/SH
+    
+    #v1 update
+
+[33mcommit 002597c38a0bf5148e39baa73d2a2f8e62b1b683[m
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Sat Jul 30 20:51:20 2022 +0900
+
+    signup,signinPage Ref 작업 및axios,redux 라이브러리 추가 설치 및 chatPage 구현중
+
+[33mcommit 47201e74bfafd3e87493580537382b469983dcd5[m
+Merge: 35fad78 c0e96aa
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Sat Jul 30 04:13:00 2022 +0900
+
+    Merge pull request #11 from JJSEONG/SH
+    
+    Signup 리팩토링
+
+[33mcommit c0e96aab10d7de7dc7874d035bb19ae32bf70f5e[m
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Sat Jul 30 04:10:11 2022 +0900
+
+    Signup 리팩토링
+
+[33mcommit 3b3b711179eecdb358ab49678fc92ae41ec3e7f4[m
+Merge: 3123424 35fad78
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Sat Jul 30 03:30:50 2022 +0900
+
+    Merge pull request #10 from JJSEONG/master
+    
+    merge
+
+[33mcommit 35fad787e12f31579798c7d0fcadba7fbd3aad84[m
+Merge: 5ee2a5a 53c5e7d
+Author: JongSeong Jeong <94487454+JJSEONG@users.noreply.github.com>
+Date:   Sat Jul 30 03:27:28 2022 +0900
+
+    Merge pull request #9 from JJSEONG/JS
+    
+    Js
+
+[33mcommit 53c5e7d6e9e4dd7057354b7a70cbe9f523afb31d[m
+Merge: bb88bca 5ee2a5a
+Author: JJSEONG <hans3238@naver.com>
+Date:   Sat Jul 30 03:26:36 2022 +0900
+
+    Create Chat Page
+
+[33mcommit bb88bca6cc593aa62ba671a2cc8d6ba41aea2d1c[m
+Author: JJSEONG <hans3238@naver.com>
+Date:   Sat Jul 30 03:25:39 2022 +0900
+
+    Create Chat Page
+
+[33mcommit 5ee2a5abc6f5fddc07f545bc6b5682477482586f[m
+Merge: e6bcb7f 3123424
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Sat Jul 30 03:23:46 2022 +0900
+
+    Merge pull request #8 from JJSEONG/SH
+    
+    Signin Page 리팩토링
+
+[33mcommit 3123424fddf48b4bea62e783dd1e7fb2dcc7c772[m
+Merge: 6cc6f93 ee764ad
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Sat Jul 30 03:21:32 2022 +0900
+
+    Merge branch 'SH' of https://github.com/JJSEONG/React-CloneProject into SH
+
+[33mcommit e6bcb7fdd478dde1f0f11d80c4a42d8bac28e24b[m
+Merge: aa0723f ee764ad
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Sat Jul 30 03:20:45 2022 +0900
+
+    Merge pull request #7 from JJSEONG/SH
+    
+    Merge pull request #6 from JJSEONG/master
+
+[33mcommit 6cc6f9363aa3897d2141f6cd6b070eb99623de73[m
+Merge: 8384945 aa0723f
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Sat Jul 30 03:19:49 2022 +0900
+
+    SigninPage 리팩토링
+
+[33mcommit 8384945eb62e26f3dffac4781511c30959660f05[m
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Sat Jul 30 03:16:56 2022 +0900
+
+    SigninPage 리팩토링
+
+[33mcommit ee764ad4006a1f478d36eaa6192364613ec16b2b[m
+Merge: a4e9b2f aa0723f
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Sat Jul 30 01:25:03 2022 +0900
+
+    Merge pull request #6 from JJSEONG/master
+    
+    push
+
+[33mcommit aa0723f2eab81187ae145d177b83626fe4eb8cec[m
+Merge: e1b3adc f44e903
+Author: JongSeong Jeong <94487454+JJSEONG@users.noreply.github.com>
+Date:   Sat Jul 30 01:22:51 2022 +0900
+
+    Merge pull request #5 from JJSEONG/JS
+    
+    Js
+
+[33mcommit f44e903e3922329dd382269a0fa9d48aaa8f77fb[m
+Merge: 7f986a4 e1b3adc
+Author: JJSEONG <hans3238@naver.com>
+Date:   Sat Jul 30 01:22:15 2022 +0900
+
+    Create Friend List View
+
+[33mcommit 7f986a45cf39b928b7d4b82da63618c18ecad97a[m
+Author: JJSEONG <hans3238@naver.com>
+Date:   Sat Jul 30 01:11:19 2022 +0900
+
+    Create Friend Modal
+
+[33mcommit e1b3adcbe020bbb035c11aeee1bae6e189327bf5[m
+Merge: 37c1c1a a4e9b2f
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Sat Jul 30 01:10:29 2022 +0900
+
+    Merge pull request #4 from JJSEONG/SH
+    
+    로그인 & 회원가입페이지 View 완료
+
+[33mcommit a4e9b2fe3907f56ec4e85a3c0144b8acdda361a7[m
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Sat Jul 30 01:08:59 2022 +0900
+
+    회원가입 페이지 View 완료
+
+[33mcommit 06e27a830166b41b6bebab5be4337e2d7228538e[m
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Fri Jul 29 23:30:20 2022 +0900
+
+    로그인 페이지 view 완성
+
+[33mcommit 37c1c1a49fae98f050b6307652f2e54421c65999[m
+Merge: 5f552e4 30e4ce7
+Author: JongSeong Jeong <94487454+JJSEONG@users.noreply.github.com>
+Date:   Fri Jul 29 22:00:20 2022 +0900
+
+    Merge pull request #3 from JJSEONG/JS
+    
+    Js
+
+[33mcommit 30e4ce72ec317b06b4cc087558b660ddbb6aa865[m
+Merge: 097bb35 5f552e4
+Author: JJSEONG <hans3238@naver.com>
+Date:   Fri Jul 29 21:59:45 2022 +0900
+
+    Create Friend Page
+
+[33mcommit 097bb35612be5630af74e26b48ab52600c519f50[m
+Author: JJSEONG <hans3238@naver.com>
+Date:   Fri Jul 29 21:56:42 2022 +0900
+
+    Create Friend Page
+
+[33mcommit 5f552e4dde84f830250a7045f2362f50d307bdc6[m
+Merge: 8a7d23c e678b58
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Fri Jul 29 21:55:22 2022 +0900
+
+    Merge pull request #2 from JJSEONG/SH
+    
+    create login page
+
+[33mcommit e678b58284a75eaf058e59a66b37eb947e1553c2[m
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Fri Jul 29 21:54:16 2022 +0900
+
+    create login page
+
+[33mcommit 8a7d23cd98dc9b4c6d91010d0877e433a9752275[m
+Merge: 8e31846 8107f84
+Author: 인소현 <105898246+INSOCCI@users.noreply.github.com>
+Date:   Fri Jul 29 21:25:23 2022 +0900
+
+    Merge pull request #1 from JJSEONG/SH
+    
+    test
+
+[33mcommit 8107f84b6bd51bf6aad7594b0216dd23887a1a40[m
+Author: 인소현 <sohyun7305@naver.com>
+Date:   Fri Jul 29 21:24:29 2022 +0900
+
+    test
+
+[33mcommit 8e31846a74a1649f85037017df6ce2a00f786fca[m
+Author: JJSEONG <hans3238@naver.com>
+Date:   Fri Jul 29 21:03:32 2022 +0900
+
+    Create FriendList Header
