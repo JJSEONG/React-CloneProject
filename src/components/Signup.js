@@ -25,7 +25,7 @@ const Signup = () => {
 
   useEffect(() => {
     sessionStorage.setItem("checkUsername", false)
-  }, [])
+  }, []);
 
   const submitToSignup = async (e) => {
     e.preventDefault();
@@ -50,7 +50,7 @@ const Signup = () => {
           nickname: nickname,
           password: password,
           checkPassword: checkPassword,
-          profilImage: "https://horang2film.co.kr/common/img/default_profile.png",
+          profileImage: "https://horang2film.co.kr/common/img/default_profile.png",
           checkUsername: sessionStorage.getItem("checkUsername")
         },
       }).then((response) => {

@@ -1,12 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 // 나의 프로필 이미지
 import MyImg from '../profile_img.jpeg'
 
 const FriendProfile = () => {
+
+  const navigate = useNavigate();
+
   return (
-    <FriendWrap>
+    <FriendWrap onClick={() => navigate("/:friend_id/chat")} >
       <ProTxt>
         <ImgWrap>
           <img src={MyImg} alt="프로필 이미지" />

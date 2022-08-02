@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import FriendMessage from "../elements/FriendMessage";
-import MyMessage from "../elements/MyMessage";
+// import FriendMessage from "../elements/FriendMessage";
+// import MyMessage from "../elements/MyMessage";
 
 // Components 연결
 // import MyProfile from '../elements/MyProfile'

@@ -1,38 +1,41 @@
-import React, { useEffect } from 'react'
-import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
-import axios from 'axios'
+import React, { useEffect } from "react";
+import axios from "axios";
 
 // Components 연결
-import MyProfile from '../elements/MyProfile'
-import FriendProfile from '../elements/FriendProfile'
-import FriendModal from '../elements/FriendModal'
+import MyProfile from "../elements/MyProfile";
+import FriendProfile from "../elements/FriendProfile";
+import FriendModal from "../elements/FriendModal";
+
+// 스타일, 아이콘 연결
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
+
+
 
 const Friend = () => {
-
   useEffect(() => {
-    LoadFriend()
-  }, [])
+    LoadFriend();
+  }, []);
 
-  const [ addFriend, setAddFriend ] = React.useState(false)
+  const [addFriend, setAddFriend] = React.useState(false);
 
   const addFriendBtn = () => {
     setAddFriend(true);
-  }
-  console.log(addFriend)
+  };
+  console.log(addFriend);
 
-  let sessionStorage = window.sessionStorage
+  let sessionStorage = window.sessionStorage;
 
-  const token = sessionStorage.getItem("token")
+  const token = sessionStorage.getItem("token");
   const LoadFriend = async () => {
     const res = await axios.get("http://3.37.61.221/api/friend/list", {
-      headers : {
-        Authorization: token
-      }
-    })
-    console.log(res)
-  }
+      headers: {
+        Authorization: token,
+      },
+    });
+    console.log(res);
+  };
 
   return (
     <Wrap>
@@ -62,24 +65,16 @@ const Friend = () => {
         <FriendProfile />
         <FriendProfile />
       </FriendList>
-      {
-        addFriend ? 
-        (
-          <FriendModal setAddFriend={setAddFriend} />
-        ) : 
-        (
-          null
-        )
-      }
+      {addFriend ? <FriendModal setAddFriend={setAddFriend} /> : null}
     </Wrap>
-  )
-}
+  );
+};
 
 const Wrap = styled.div`
   width: 320px;
   height: 100%;
   margin: 0 auto;
-`
+`;
 
 const Header = styled.div`
   position: relative;
@@ -92,7 +87,7 @@ const Header = styled.div`
   align-items: center;
   padding: 20px 0 0;
   box-sizing: border-box;
-`
+`;
 
 const Title = styled.div`
   width: 100%;
@@ -105,7 +100,7 @@ const Title = styled.div`
     margin: 0;
     margin-left: 10px;
   }
-`
+`;
 
 const AddBtn = styled.div`
   position: absolute;
@@ -123,7 +118,7 @@ const AddBtn = styled.div`
   &:hover {
     color: rgba(0, 0, 0, 1);
   }
-`
+`;
 
 const SubTitle = styled.div`
   width: 90%;
@@ -136,12 +131,12 @@ const SubTitle = styled.div`
     margin-left: 10px;
     padding: 6px 0;
     font-size: 12px;
-    color: #5E5E5E;
+    color: #5e5e5e;
   }
-`
+`;
 
 const FriendList = styled.div`
   width: 100%;
-`
+`;
 
-export default Friend
+export default Friend;
