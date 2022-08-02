@@ -30,12 +30,14 @@ const Friend = () => {
   const token = sessionStorage.getItem("token");
   const LoadFriend = async () => {
     const res = await axios.get("http://3.37.61.221/api/friend/list", {
-      headers: {
-        Authorization: token,
-      },
-    });
-    console.log(res);
-  };
+      headers : {
+        "Authorization": token
+      }
+    })
+    console.log(res)
+  }
+
+  
 
   return (
     <Wrap>

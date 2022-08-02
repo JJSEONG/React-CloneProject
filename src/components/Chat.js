@@ -11,6 +11,9 @@ import styled from "styled-components";
 // import FriendModal from '../elements/FriendModal'
 
 const Chat = () => {
+
+  
+
   return (
     <Wrap>
       <Title>

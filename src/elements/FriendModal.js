@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 
 const FriendModal = ({ setAddFriend }) => {
+
+  const sessionStorage = window.sessionStorage;
 
   const ModalCancle = () => {
     setAddFriend(false)
@@ -16,6 +19,18 @@ const FriendModal = ({ setAddFriend }) => {
     } else {
       setDisabled(true)
     }
+  }
+
+  const token = sessionStorage.getItem("token")
+  const addFriend = async () => {
+    const res = await axios.post("http://3.37.61.221/api/friend/new", {
+      "friendname": add_ref.current.value
+    }, {
+      headers: {
+        "Authorization": token
+      }
+    })
+    console.log(res)
   }
 
   return (
@@ -33,7 +48,7 @@ const FriendModal = ({ setAddFriend }) => {
         </Input>
         <ButtonWrap>
           <button onClick={ModalCancle}>취소</button>
-          <button onClick={ModalCancle} disabled={disabled}>친구 추가</button>
+          <button onClick={addFriend} disabled={disabled}>친구 추가</button>
         </ButtonWrap>
       </ModalWrap>
     </div>
