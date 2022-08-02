@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import Stomp from 'stompjs';
+import SockJS from 'sockjs-client';
 
 // import Stomp from 'stompjs';
 // import SockJS from 'sockjs-client';
@@ -7,16 +11,7 @@ import styled from "styled-components";
 // import FriendMessage from "../elements/FriendMessage";
 // import MyMessage from "../elements/MyMessage";
 
-// Components 연결
-// import MyProfile from '../elements/MyProfile'
-// import FriendProfile from '../elements/FriendProfile'
-// import Button from '../elements/Button'
-// import FriendModal from '../elements/FriendModal'
-
 const Chat = () => {
-
-
-
 
   return (
     <Wrap>

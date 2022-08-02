@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch, useSelector } from 'react-redux'
 
 // Components 연결
 import MyProfile from "../elements/MyProfile";
@@ -18,6 +22,8 @@ import { loadFriendDB } from '../redux/modules/cocoatalk'
 
 const Friend = () => {
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.cocoatalk.list.friendList)
+  // console.log(data)
 
   useEffect(() => {
     dispatch(loadFriendDB())
