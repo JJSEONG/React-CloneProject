@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 
 const FriendModal = ({ setAddFriend }) => {
+
+  const sessionStorage = window.sessionStorage;
 
   const ModalCancle = () => {
     setAddFriend(false)
@@ -15,6 +18,29 @@ const FriendModal = ({ setAddFriend }) => {
       setDisabled(false)
     } else {
       setDisabled(true)
+    }
+  }
+
+  const token = sessionStorage.getItem("token")
+  const addFriend = async () => {
+    try {
+      const res = await axios.post("http://3.37.61.221/api/friend/new", {
+        "friendname": add_ref.current.value
+      }, {
+        headers: {
+          "Authorization": token
+        }
+      })
+      console.log(res)
+      if(res.status === 200 && res.data === "유저 등록 성공") {
+        window.alert(`${add_ref.current.value}님이 존재합니다.\n친구 추가에 성공하셨습니다.`)
+        setAddFriend(false)
+        window.location.reload()
+      }
+    } catch(error) {
+      console.log(error)
+      window.alert(`${add_ref.current.value}님이 존재하지 않습니다.\n친구 추가에 실패하셨습니다.`)
+      add_ref.current.focus();
     }
   }
 
@@ -33,7 +59,7 @@ const FriendModal = ({ setAddFriend }) => {
         </Input>
         <ButtonWrap>
           <button onClick={ModalCancle}>취소</button>
-          <button onClick={ModalCancle} disabled={disabled}>친구 추가</button>
+          <button onClick={addFriend} disabled={disabled}>친구 추가</button>
         </ButtonWrap>
       </ModalWrap>
     </div>

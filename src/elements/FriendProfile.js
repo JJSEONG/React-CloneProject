@@ -1,22 +1,70 @@
 import React from 'react'
 import styled from 'styled-components'
-
-// 나의 프로필 이미지
-import MyImg from '../profile_img.jpeg'
+import { useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 const FriendProfile = () => {
+
+  const lists = useSelector((state) => state.cocoatalk.list.friendList)
+  const sessionStorage = window.sessionStorage
+  console.log(lists)
+
+  const CreateChatRoom = async (e, username) => {
+
+    e.preventDefault();
+    console.log(username)
+    try {
+      const token = sessionStorage.getItem("token")
+      const res = await axios.post("http://3.37.61.221/chatRoom/find", {
+        "participants": username,
+        "roomName": username
+      }, {
+        headers: {
+          "Authorization": token
+        }
+      })
+      console.log(res.data)
+      navigate(`/${res.data}/chat`)
+    } catch(error) {
+      console.log(error)
+      const token = sessionStorage.getItem("token")
+      const res = await axios.post("http://3.37.61.221/chatRoom/create", {
+        "participants": username,
+        "roomName": username
+      }, {
+        headers: {
+          "Authorization": token
+        }
+      })
+      console.log("create", res)
+      navigate(`/${res.data}/chat`)
+    }
+  }
+
+  const navigate = useNavigate()
+
   return (
-    <FriendWrap>
-      <ProTxt>
-        <ImgWrap>
-          <img src={MyImg} alt="프로필 이미지" />
-        </ImgWrap>
-        <TxtWrap>
-          <h3>이보리</h3>
-          <p>보리🌾</p>
-        </TxtWrap>
-      </ProTxt>
-    </FriendWrap>
+    <div>
+      {
+        lists?.map((list, idx) => {
+          return (
+            <FriendWrap key = {idx}
+            onClick = {(e) => CreateChatRoom(e, list.username)}>
+              <ProTxt>
+                <ImgWrap>
+                  <img src={list?.profileImage} alt="프로필 이미지" />
+                </ImgWrap>
+                <TxtWrap>
+                  <h3>{list?.nickname}</h3>
+                  <p>{list?.userStatus}</p>
+                </TxtWrap>
+              </ProTxt>
+            </FriendWrap>
+          )
+        })
+      }
+    </div>
   )
 }
 

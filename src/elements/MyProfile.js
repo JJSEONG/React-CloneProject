@@ -1,20 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
-
-// 나의 프로필 이미지
-import MyImg from '../profile_img.jpeg'
+import { useSelector } from 'react-redux'
 
 const MyProfile = () => {
+
+  const list = useSelector((state) => state.cocoatalk.list.userProfile)
+  // console.log(list)
+
   return (
     <MyPro>
       <p>내 프로필</p>
       <MyProTxt>
         <MyImgWrap>
-          <img src={MyImg} alt="프로필 이미지" />
+          <img src={list?.profileImage} alt="프로필 이미지" />
         </MyImgWrap>
         <MyTxtWrap>
-          <h3>이보리</h3>
-          <p>보리🌾</p>
+          <h3>{list?.nickname}</h3>
+          <p>{list?.userStatus}</p>
         </MyTxtWrap>
       </MyProTxt>
     </MyPro>
