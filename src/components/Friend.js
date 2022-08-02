@@ -28,7 +28,7 @@ const Friend = () => {
   const LoadFriend = async () => {
     const res = await axios.get("http://3.37.61.221/api/friend/list", {
       headers : {
-        Authorization: token
+        "Authorization": token
       }
     })
     console.log(res)
