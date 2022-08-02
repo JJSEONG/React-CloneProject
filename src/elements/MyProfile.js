@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 const MyProfile = () => {
 
   const list = useSelector((state) => state.cocoatalk.list.userProfile)
-  console.log(list)
+  // console.log(list)
 
   return (
     <MyPro>
