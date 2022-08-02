@@ -11,6 +11,9 @@ import MyMessage from "../elements/MyMessage";
 // import FriendModal from '../elements/FriendModal'
 
 const Chat = () => {
+
+  
+
   return (
     <Wrap>
       <Title>
