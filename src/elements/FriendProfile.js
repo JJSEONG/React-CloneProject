@@ -1,10 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
 
 // 나의 프로필 이미지
 import MyImg from '../profile_img.jpeg'
 
+
+
 const FriendProfile = () => {
+
+  const list = useSelector((state) => state.cocoatalk.list)
+
   return (
     <FriendWrap>
       <ProTxt>
