@@ -1,13 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 // 나의 프로필 이미지
 import MyImg from '../profile_img.jpeg'
 
+
+
 const FriendProfile = () => {
 
   const navigate = useNavigate();
+  const list = useSelector((state) => state.cocoatalk.list)
 
   return (
     <FriendWrap onClick={() => navigate("/:friend_id/chat")} >

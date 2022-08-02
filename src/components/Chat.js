@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+// import Stomp from 'stompjs';
+// import SockJS from 'sockjs-client';
+
 // import FriendMessage from "../elements/FriendMessage";
 // import MyMessage from "../elements/MyMessage";
 
@@ -12,7 +15,8 @@ import styled from "styled-components";
 
 const Chat = () => {
 
-  
+
+
 
   return (
     <Wrap>
