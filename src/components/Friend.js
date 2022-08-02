@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
@@ -9,11 +9,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import MyProfile from "../elements/MyProfile";
 import FriendProfile from "../elements/FriendProfile";
 import FriendModal from "../elements/FriendModal";
-
-// 스타일, 아이콘 연결
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 
 
