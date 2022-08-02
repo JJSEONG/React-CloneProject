@@ -25,7 +25,7 @@ const Signup = () => {
 
   useEffect(() => {
     sessionStorage.setItem("checkUsername", false)
-  }, [])
+  }, []);
 
   const submitToSignup = async (e) => {
     e.preventDefault();

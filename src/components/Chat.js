@@ -3,10 +3,13 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Stomp from 'stompjs';
-import SockJS from 'sockjs-client'
+import SockJS from 'sockjs-client';
 
-import FriendMessage from "../elements/FriendMessage";
-import MyMessage from "../elements/MyMessage";
+// import Stomp from 'stompjs';
+// import SockJS from 'sockjs-client';
+
+// import FriendMessage from "../elements/FriendMessage";
+// import MyMessage from "../elements/MyMessage";
 
 const Chat = () => {
 
