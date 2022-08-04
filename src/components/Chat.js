@@ -17,7 +17,7 @@ const Chat = () => {
   let sessionStorage = window.sessionStorage
   const username = sessionStorage.getItem("username")
   
-  let sock = new SockJS('http://3.37.61.221:8080/stomp');
+  let sock = new SockJS('http://13.125.57.219:8080/stomp');
   stompClient = over(sock);
   
   const onConnected = () => {
@@ -27,8 +27,8 @@ const Chat = () => {
       writer: username,
       roomId: params.roomId
     }
-    stompClient.subscribe(`/sub/chat/room`, onMessageReceived);
-    // stompClient.send("pub/chat/enter", { Authorization: token, "content-type": "application/json" }, JSON.stringify(user));
+    stompClient.subscribe(`/sub/chat/room/${params.roomId}`, onMessageReceived);
+    // stompClient.send("/pub/chat/enter", { Authorization: token, "content-type": "application/json" }, JSON.stringify(user));
   }
 
   const sendMessage = (e) => {
@@ -39,14 +39,12 @@ const Chat = () => {
       roomId: params.roomId,
       message: send_txt.current.value
     }
-    // stompClient.subscribe(`/sub/chat/room`, onMessageReceived);
-    stompClient.send("pub/chat/message", { Authorization: token, "content-type": "application/json" }, JSON.stringify(message));
+    stompClient.send("/pub/chat/message", { Authorization: token, "content-type": "application/json" }, JSON.stringify(message));
+    // stompClient.subscribe(`/sub/chat/room/${params.roomId}`, onMessageReceived);
   }
 
   const onMessageReceived = (payload) => {
-    alert("!!!!")
-    var payloadData = JSON.parse(payload);
-    console.log(payloadData)
+    console.log(payload)
     setChatList([...chatList, payload])
     console.log(chatList)
   }

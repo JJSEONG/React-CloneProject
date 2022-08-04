@@ -16,7 +16,7 @@ const FriendProfile = () => {
     console.log(username)
     try {
       const token = sessionStorage.getItem("token")
-      const res = await axios.post("http://3.37.61.221:8080/chatRoom/find", {
+      const res = await axios.post("http://13.125.57.219:8080/chatRoom/find", {
         "participants": username,
         "roomName": username
       }, {
@@ -30,7 +30,7 @@ const FriendProfile = () => {
     } catch(error) {
       console.log(error)
       const token = sessionStorage.getItem("token")
-      const res = await axios.post("http://3.37.61.221:8080/chatRoom/create", {
+      const res = await axios.post("http://13.125.57.219:8080/chatRoom/create", {
         "participants": username,
         "roomName": username
       }, {
