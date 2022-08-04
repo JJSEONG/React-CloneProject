@@ -35,7 +35,7 @@ const Signup = () => {
     const password = signupPw.current.value;
     const checkPassword = signupPwCheck.current.value;
     
-    console.log(username, name, nickname, password, checkPassword);
+    // console.log(username, name, nickname, password, checkPassword);
 
     let sessionStorage = window.sessionStorage;
     
@@ -55,7 +55,7 @@ const Signup = () => {
         },
       }).then((response) => {
           // 유효성 검사하기
-          console.log(response)
+          // console.log(response)
 
           if(response.status === 200 && response.data === '아이디를 3자 이상 입력하세요.') {
             window.alert("아이디를 3자 이상 이메일 형식으로 입력하세요.") 
@@ -105,7 +105,7 @@ const Signup = () => {
     const res = await axios.post("http://13.125.57.219:8080/api/user/username", {
       username: username
     })
-    console.log(res)
+    // console.log(res)
     if(res.data === "사용 할 수 있는 아이디 입니다.") {
       sessionStorage.setItem("checkUsername", true)
       window.alert(res.data)

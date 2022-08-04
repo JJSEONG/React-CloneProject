@@ -31,7 +31,7 @@ const FriendModal = ({ setAddFriend }) => {
           "Authorization": token
         }
       })
-      console.log(res)
+      // console.log(res)
       if(res.status === 200 && res.data.errorCode === "FRIENDNAME_OVERLAP") {
         window.alert(`${add_ref.current.value}님은 이미 친구로 등록되어 있습니다.`)
         add_ref.current.focus();

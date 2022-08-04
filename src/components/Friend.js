@@ -13,9 +13,9 @@ import FriendModal from "../elements/FriendModal";
 // Redux Action Funtion 연결
 import { loadFriendDB } from '../redux/modules/cocoatalk'
 
-const Friend = () => {
+const Friend = ({ data, setData }) => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.cocoatalk.list.friendList)
+  // const data = useSelector((state) => state.cocoatalk.list.friendList)
   // console.log(data)
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Friend = () => {
   const addFriendBtn = () => {
     setAddFriend(true);
   };
-  console.log(addFriend);
+  // console.log(addFriend);
 
   return (
     <Wrap>
@@ -44,7 +44,7 @@ const Friend = () => {
         <p>친구</p>
       </SubTitle>
       <FriendList>
-        <FriendProfile />
+        <FriendProfile data = { data } setData = { setData } />
       </FriendList>
       {addFriend ? <FriendModal setAddFriend={setAddFriend} /> : null}
     </Wrap>
