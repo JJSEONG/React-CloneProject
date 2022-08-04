@@ -21,14 +21,19 @@ const Chat = () => {
   
   let sock = new SockJS('http://13.125.57.219:8080/stomp');
   stompClient = over(sock);
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token")
+    stompClient.connect({ Authorization: token }, onConnected, onError);
+  }, [])
   
   const onConnected = () => {
     console.log(stompClient)
-    const token = sessionStorage.getItem("token")
-    const user = {
-      writer: username,
-      roomId: params.roomId
-    }
+    // const token = sessionStorage.getItem("token")
+    // const user = {
+    //   writer: username,
+    //   roomId: params.roomId
+    // }
     stompClient.subscribe(`/sub/chat/room/${params.roomId}`, onMessageReceived);
     // stompClient.send("/pub/chat/enter", { Authorization: token, "content-type": "application/json" }, JSON.stringify(user));
   }
@@ -47,35 +52,60 @@ const Chat = () => {
 
   const onMessageReceived = (payload) => {
     console.log(payload)
-    setChatList([...chatList, payload])
-    console.log(chatList)
+    const data = JSON.parse(payload.body)
+    console.log(data)
+    chatList.push(data)
+    setChatList([...chatList])
   }
+
+  console.log(chatList)
   
   const onError = () => {
     window.alert("실패했다 !")
   }
 
-  useEffect(() => {
-    const token = sessionStorage.getItem("token")
-    stompClient.connect({ Authorization: token }, onConnected, onError);
-  }, [])
-
-
-  
   return (
     <Wrap>
       <Title>
         <h2>이보리</h2>
       </Title>
-      <ChatBox></ChatBox>
-      <PostMessageBox>
-
-        <PostMessageForm onSubmit={sendMessage}>
-          <PostMessageInput ref={ send_txt } />
-
-          <SubmitBtn>전송</SubmitBtn>
-        </PostMessageForm>
-      </PostMessageBox>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
+        <ChatWrap>
+          {
+            chatList.map((v, i) => {
+              return (
+                <ChatBox key = { i } style = {{
+                  alignItems: v.writer === sessionStorage.getItem("username") ? "flex-end" : "flex-start",
+                }}>
+                  {
+                    (v.writer === sessionStorage.getItem("username")) ? 
+                    (
+                      <p style={{ 
+                        backgroundColor: "green",
+                        height: "30px",
+                        padding: "6px",
+                      }}>{v.message}</p>
+                    ) :
+                    (
+                      <p style={{
+                        backgroundColor: "red",
+                        height: "30px",
+                        padding: "6px"
+                      }}>{v.message}</p>
+                    )
+                  }
+                </ChatBox>
+              )
+            })
+          }
+        </ChatWrap>
+        <PostMessageBox>
+          <PostMessageForm onSubmit={sendMessage}>
+            <PostMessageInput ref={ send_txt } />
+            <SubmitBtn>전송</SubmitBtn>
+          </PostMessageForm>
+        </PostMessageBox>
+      </div>
     </Wrap>
   );
 };
@@ -83,34 +113,43 @@ const Chat = () => {
 const Wrap = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #b2c7da;
 `;
 const Title = styled.div`
   width: 100%;
-  height: 8%;
+  height: 40px;
   position: fixed;
   top: 0;
   z-index: 99;
-  background-color: #b2c7da;
+  background-color: #fae300;
   h2 {
     width: 90%;
     margin: 0 auto;
-    background-color: #b2c7da;
     border-bottom: 0.1rem solid #8e8e8e;
     font-size: 1.3rem;
     padding: 3% 0 2% 0;
+    background-color: #fae300;
   }
 `;
 
+const ChatWrap = styled.div`
+  width: 100%;
+  height: 80%;
+  margin: 60px 0 110px;
+`
+
 const ChatBox = styled.div`
   width: 90%;
-  overflow: hidden;
-  background-color: #b2c7da;
+  height: 100%;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 0 auto;
+  p {
+    margin: 4px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 const PostMessageBox = styled.div`
   width: 100%;
