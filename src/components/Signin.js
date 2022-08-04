@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -17,8 +17,11 @@ const Signin = () => {
   // const userData = { username, password };
   const navigate = useNavigate();
 
-  const axiosSignin = async (e) => {
+  useEffect(() => {
+    sessionStorage.clear();
+  }, [])
 
+  const axiosSignin = async (e) => {
     e.preventDefault()
     try {
       const res = await axios.post("http://3.37.61.221:8080/login", {

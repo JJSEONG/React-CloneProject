@@ -52,7 +52,7 @@ export const loadFriendDB = () => {
   const token = sessionStorage.getItem("token")
   return async function (dispatch) {
     try {
-      const res = await axios.get("http://3.37.61.221/api/friend/list", {
+      const res = await axios.get("http://3.37.61.221:8080/api/friend/list", {
         headers: {
           "Authorization": token
         }

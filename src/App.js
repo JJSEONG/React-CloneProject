@@ -18,7 +18,7 @@ function App() {
         <Route index element={<Signin />} />
         <Route path="/signup" element={ <Signup /> } />
         <Route path="/friendList" element={ <Friend /> } />
-        <Route path="/:friend_id/chat" element={ <Chat /> } />
+        <Route path="/:roomId/chat" element={ <Chat /> } />
       </Routes>
     </div>
   );
