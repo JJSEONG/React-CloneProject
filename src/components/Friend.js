@@ -10,8 +10,6 @@ import MyProfile from "../elements/MyProfile";
 import FriendProfile from "../elements/FriendProfile";
 import FriendModal from "../elements/FriendModal";
 
-
-
 // Redux Action Funtion 연결
 import { loadFriendDB } from '../redux/modules/cocoatalk'
 
