@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { over } from 'stompjs';
 import SockJS from 'sockjs-client';
+import { useNavigate } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 
 // import FriendMessage from "../elements/FriendMessage";
@@ -11,6 +15,7 @@ import SockJS from 'sockjs-client';
 let stompClient = null;
 const Chat = ({ data, setData }) => {
 
+  const navigate = useNavigate();
   // console.log(data)
 
   const [ chatList, setChatList ] = React.useState([])
@@ -98,6 +103,16 @@ const Chat = ({ data, setData }) => {
   return (
     <Wrap>
       <Title>
+        <FontAwesomeIcon
+          className="BackIcon"
+          onClick={ () => navigate("/friendList") }
+          icon={faAngleLeft}
+          style={{
+            position: "absolute",
+            top: "calc(50% - 6px)",
+            left: "10%"
+          }}
+        />
         <h2>{data.nickname}</h2>
       </Title>
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
