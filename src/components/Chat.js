@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import { over } from 'stompjs';
 import SockJS from 'sockjs-client';
 
+
 // import FriendMessage from "../elements/FriendMessage";
 // import MyMessage from "../elements/MyMessage";
 
 let stompClient = null;
 const Chat = () => {
+
   const [ chatList, setChatList ] = React.useState([])
   const params = useParams()
   const send_txt = React.useRef(null)
@@ -186,7 +188,7 @@ const SubmitBtn = styled.button`
   bottom: 15px;
   right: 8px;
   border-radius: 5px;
-  border: 1px solid #C8C8C8;
+  border: 1px solid #c8c8c8;
   color: #939393;
 `;
 
