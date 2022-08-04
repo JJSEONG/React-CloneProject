@@ -49,6 +49,8 @@ const Chat = ({ data, setData }) => {
       message: send_txt.current.value
     }
     stompClient.send("/pub/chat/message", { Authorization: token, "content-type": "application/json" }, JSON.stringify(message));
+    setInputtxt('')
+    send_txt.current.focus()
     // stompClient.subscribe(`/sub/chat/room/${params.roomId}`, onMessageReceived);
   }
 
@@ -58,8 +60,6 @@ const Chat = ({ data, setData }) => {
     // console.log(data)
     chatList.push(data)
     setChatList([...chatList])
-    setInputtxt('')
-    send_txt.current.focus()
   }
 
   // console.log(chatList)
@@ -87,6 +87,12 @@ const Chat = ({ data, setData }) => {
   const [ inputtxt, setInputtxt ] = React.useState('');
   const onChangeInput = (e) => {
     setInputtxt(e.target.value);
+  }
+
+  const onCheckEnter = (e) => {
+    if(e.key === 'Enter') {
+      sendMessage(e)
+    }
   }
 
   return (
@@ -147,13 +153,13 @@ const Chat = ({ data, setData }) => {
           }
         </ChatWrap>
         <PostMessageBox>
-          <PostMessageForm onSubmit={sendMessage}>
+          <PostMessageForm onSubmit={sendMessage} onKeyPress = {onCheckEnter}>
             <PostMessageInput ref={ send_txt } value = {inputtxt}
             onChange = {(e) => {
               change();
               onChangeInput(e)}
               } />
-            <SubmitBtn disabled = {disabled} >전송</SubmitBtn>
+            <SubmitBtn disabled = {disabled}>전송</SubmitBtn>
           </PostMessageForm>
         </PostMessageBox>
       </div>
