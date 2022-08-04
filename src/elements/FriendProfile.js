@@ -11,7 +11,6 @@ const FriendProfile = () => {
   console.log(lists)
 
   const CreateChatRoom = async (e, username) => {
-
     e.preventDefault();
     console.log(username)
     try {
@@ -25,7 +24,9 @@ const FriendProfile = () => {
         }
       })
       console.log(res.data)
+
       sessionStorage.setItem("username", res.data.username)
+
       navigate(`/${res.data.roomId}/chat`)
     } catch(error) {
       console.log(error)
@@ -39,7 +40,9 @@ const FriendProfile = () => {
         }
       })
       console.log("create", res)
+
       sessionStorage.setItem("username", res.data.username)
+
       navigate(`/${res.data.roomId}/chat`)
     }
   }

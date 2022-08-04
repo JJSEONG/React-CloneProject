@@ -19,7 +19,7 @@ const Signup = () => {
   const signupName = React.useRef(null); // Name
   const signupNick = React.useRef(null); // Nickname
   const signupPw = React.useRef(null); // Password
-  const signupPwCheck = React.useRef(null); // Check Password
+  const signupPwCheck = React.useRef(null); // CheckPassword
 
   let sessionStorage = window.sessionStorage;
 
