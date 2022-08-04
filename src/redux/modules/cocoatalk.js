@@ -57,7 +57,7 @@ export const loadFriendDB = () => {
           "Authorization": token
         }
       });
-      console.log(res)
+      // console.log(res)
       dispatch(loadFriend(res.data))
     } catch(error) {
       console.log(error)
@@ -69,7 +69,7 @@ export const loadFriendDB = () => {
 export default function reducer(state = initialState, action = {} ) {
   switch (action.type) {
     case "cocoatalk/FRIEND_LOAD": {
-      console.log(state, action.list)
+      // console.log(state, action.list)
       return { list: action.list }
     }
 

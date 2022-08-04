@@ -9,12 +9,14 @@ import SockJS from 'sockjs-client';
 // import MyMessage from "../elements/MyMessage";
 
 let stompClient = null;
-const Chat = () => {
+const Chat = ({ data, setData }) => {
+
+  // console.log(data)
 
   const [ chatList, setChatList ] = React.useState([])
   const params = useParams()
   const send_txt = React.useRef(null)
-  console.log(params.roomId)
+  // console.log(params.roomId)
 
   let sessionStorage = window.sessionStorage
   const username = sessionStorage.getItem("username")
@@ -28,7 +30,7 @@ const Chat = () => {
   }, [])
   
   const onConnected = () => {
-    console.log(stompClient)
+    // console.log(stompClient)
     // const token = sessionStorage.getItem("token")
     // const user = {
     //   writer: username,
@@ -51,47 +53,92 @@ const Chat = () => {
   }
 
   const onMessageReceived = (payload) => {
-    console.log(payload)
+    // console.log(payload)
     const data = JSON.parse(payload.body)
-    console.log(data)
+    // console.log(data)
     chatList.push(data)
     setChatList([...chatList])
+    setInputtxt('')
+    send_txt.current.focus()
   }
 
-  console.log(chatList)
+  // console.log(chatList)
   
   const onError = () => {
     window.alert("실패했다 !")
   }
 
+  const [ disabled, setDisabled ] = React.useState(true)
+
+  const change = () => {
+    if(send_txt.current.value !== "") {
+      setDisabled(false)
+    } else {
+      setDisabled(true)
+    }
+  }
+
+  const scrollRef = React.useRef(null)
+
+  useEffect(() => {
+    scrollRef?.current?.scrollIntoView({ behavior: "smooth" })
+  }, [chatList]);
+
+  const [ inputtxt, setInputtxt ] = React.useState('');
+  const onChangeInput = (e) => {
+    setInputtxt(e.target.value);
+  }
+
   return (
     <Wrap>
       <Title>
-        <h2>이보리</h2>
+        <h2>{data.nickname}</h2>
       </Title>
       <div style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
         <ChatWrap>
           {
             chatList.map((v, i) => {
               return (
-                <ChatBox key = { i } style = {{
+                <ChatBox ref={ scrollRef } key = { i } style = {{
                   alignItems: v.writer === sessionStorage.getItem("username") ? "flex-end" : "flex-start",
+                  justifyContents: v.writer === sessionStorage.getItem("username") ? "flex-end" : "flex-start",
                 }}>
                   {
                     (v.writer === sessionStorage.getItem("username")) ? 
                     (
                       <p style={{ 
-                        backgroundColor: "green",
-                        height: "30px",
-                        padding: "6px",
+                        fontSize: "14px",
+                        backgroundColor: "#B2C7DA",
+                        maxWidth: "290px",
+                        minHeight: "30px",
+                        padding: "4px 10px",
+                        borderRadius: "10px",
+                        boxSizing: "border-box",
+                        textAlign: "right"
                       }}>{v.message}</p>
                     ) :
                     (
-                      <p style={{
-                        backgroundColor: "red",
-                        height: "30px",
-                        padding: "6px"
-                      }}>{v.message}</p>
+                      <ProfileWrap>
+                        <ImgWrap>
+                          <img src={data.profileImage} alt="" />
+                        </ImgWrap>
+                        <Profile>
+                          <p style={{
+                            fontSize: "10px",
+                            marginLeft: "6px"
+                          }}>{data.nickname}</p>
+                          <p style={{
+                            fontSize: "14px",
+                            backgroundColor: "white",
+                            maxWidth: "290px",
+                            minHeight: "30px",
+                            padding: "4px 10px",
+                            borderRadius: "10px",
+                            boxSizing: "border-box",
+                            textAlign: "left"
+                          }}>{v.message}</p>
+                        </Profile>
+                      </ProfileWrap>
                     )
                   }
                 </ChatBox>
@@ -101,8 +148,12 @@ const Chat = () => {
         </ChatWrap>
         <PostMessageBox>
           <PostMessageForm onSubmit={sendMessage}>
-            <PostMessageInput ref={ send_txt } />
-            <SubmitBtn>전송</SubmitBtn>
+            <PostMessageInput ref={ send_txt } value = {inputtxt}
+            onChange = {(e) => {
+              change();
+              onChangeInput(e)}
+              } />
+            <SubmitBtn disabled = {disabled} >전송</SubmitBtn>
           </PostMessageForm>
         </PostMessageBox>
       </div>
@@ -111,8 +162,8 @@ const Chat = () => {
 };
 
 const Wrap = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 const Title = styled.div`
   width: 100%;
@@ -133,27 +184,53 @@ const Title = styled.div`
 
 const ChatWrap = styled.div`
   width: 100%;
-  height: 80%;
-  margin: 60px 0 110px;
+  height: 65%;
+  margin: 60px 0 140px;
 `
 
 const ChatBox = styled.div`
   width: 90%;
-  height: 100%;
+  height: 90%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   flex-direction: column;
   p {
-    margin: 4px 0;
+    margin: 2px 0;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 `;
+
+const ProfileWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+`
+
+const ImgWrap = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  margin-right: 6px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`
+
+const Profile = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+`
+
 const PostMessageBox = styled.div`
   width: 100%;
-  height: 15%;
+  height: 18%;
   box-sizing: border-box;
   position: fixed;
   bottom: 0px;
@@ -188,8 +265,14 @@ const SubmitBtn = styled.button`
   bottom: 15px;
   right: 8px;
   border-radius: 5px;
+  background-color: #fae300;
   border: 1px solid #c8c8c8;
-  color: #939393;
+  color: #38302B;
+  font-weight: bold;
+  &:disabled {
+    border: 1px solid #c8c8c8;
+    color: #939393;
+  }
 `;
 
 export default Chat;

@@ -4,15 +4,17 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import axios from 'axios';
 
-const FriendProfile = () => {
+const FriendProfile = ({ data, setData }) => {
+
+  // console.log(setData)
 
   const lists = useSelector((state) => state.cocoatalk.list.friendList)
   const sessionStorage = window.sessionStorage
-  console.log(lists)
+  // console.log(lists)
 
   const CreateChatRoom = async (e, username) => {
     e.preventDefault();
-    console.log(username)
+    // console.log(username)
     try {
       const token = sessionStorage.getItem("token")
       const res = await axios.post("http://13.125.57.219:8080/chatRoom/find", {
@@ -23,7 +25,7 @@ const FriendProfile = () => {
           "Authorization": token
         }
       })
-      console.log(res.data)
+      // console.log(res.data)
 
       sessionStorage.setItem("username", res.data.username)
 
@@ -39,7 +41,7 @@ const FriendProfile = () => {
           "Authorization": token
         }
       })
-      console.log("create", res)
+      // console.log("create", res)
 
       sessionStorage.setItem("username", res.data.username)
 
@@ -55,7 +57,10 @@ const FriendProfile = () => {
         lists?.map((list, idx) => {
           return (
             <FriendWrap key = {idx}
-            onClick = {(e) => CreateChatRoom(e, list.username)}>
+            onClick = {(e) => {
+              setData(list);
+              CreateChatRoom(e, list.username)}
+            }>
               <ProTxt>
                 <ImgWrap>
                   <img src={list?.profileImage} alt="프로필 이미지" />
