@@ -25,7 +25,7 @@ const FriendProfile = () => {
       })
       console.log(res.data)
 
-      sessionStorage.setItem("username",res.data.username)
+      sessionStorage.setItem("username", res.data.username)
 
       navigate(`/${res.data.roomId}/chat`)
     } catch(error) {
@@ -41,7 +41,7 @@ const FriendProfile = () => {
       })
       console.log("create", res)
 
-      sessionStorage.setItem("username",res.data.username)
+      sessionStorage.setItem("username", res.data.username)
 
       navigate(`/${res.data.roomId}/chat`)
     }

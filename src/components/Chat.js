@@ -1,19 +1,66 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { over } from "stompjs";
-import Stomp from "stompjs";
-import SockJS from "sockjs-client";
-import axios from "axios";
+import { over } from 'stompjs';
+import SockJS from 'sockjs-client';
+
 
 // import FriendMessage from "../elements/FriendMessage";
 // import MyMessage from "../elements/MyMessage";
 
+let stompClient = null;
 const Chat = () => {
-  // 소켓 연결
 
-  let stompClient = null;
+  const [ chatList, setChatList ] = React.useState([])
+  const params = useParams()
+  const send_txt = React.useRef(null)
+  console.log(params.roomId)
 
+  let sessionStorage = window.sessionStorage
+  const username = sessionStorage.getItem("username")
+  
+  let sock = new SockJS('http://3.37.61.221:8080/stomp');
+  stompClient = over(sock);
+  
+  const onConnected = () => {
+    console.log(stompClient)
+    const token = sessionStorage.getItem("token")
+    const user = {
+      writer: username,
+      roomId: params.roomId
+    }
+    stompClient.subscribe(`/sub/chat/room`, onMessageReceived);
+    // stompClient.send("pub/chat/enter", { Authorization: token, "content-type": "application/json" }, JSON.stringify(user));
+  }
+
+  const sendMessage = (e) => {
+    e.preventDefault()
+    const token = sessionStorage.getItem("token")
+    const message = {
+      writer: username,
+      roomId: params.roomId,
+      message: send_txt.current.value
+    }
+    // stompClient.subscribe(`/sub/chat/room`, onMessageReceived);
+    stompClient.send("pub/chat/message", { Authorization: token, "content-type": "application/json" }, JSON.stringify(message));
+  }
+
+  const onMessageReceived = (payload) => {
+    alert("!!!!")
+    var payloadData = JSON.parse(payload);
+    console.log(payloadData)
+    setChatList([...chatList, payload])
+    console.log(chatList)
+  }
+  
+  const onError = () => {
+    window.alert("실패했다 !")
+  }
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token")
+    stompClient.connect({ Authorization: token }, onConnected, onError);
+  }, [])
 
 
   
@@ -24,8 +71,10 @@ const Chat = () => {
       </Title>
       <ChatBox></ChatBox>
       <PostMessageBox>
-        <PostMessageForm>
-          <PostMessageInput ref={message} />
+
+        <PostMessageForm onSubmit={sendMessage}>
+          <PostMessageInput ref={ send_txt } />
+
           <SubmitBtn>전송</SubmitBtn>
         </PostMessageForm>
       </PostMessageBox>

@@ -32,9 +32,15 @@ const FriendModal = ({ setAddFriend }) => {
         }
       })
       console.log(res)
-      if(res.status === 200 && res.data === "유저 등록 성공") {
+      if(res.status === 200 && res.data.errorCode === "FRIENDNAME_OVERLAP") {
+        window.alert(`${add_ref.current.value}님은 이미 친구로 등록되어 있습니다.`)
+        add_ref.current.focus();
+      } else if (res.status === 200 && res.data.errorCode === "SELF_REGISTRATION") {
+        window.alert(`자기 자신은 친구로 등록할 수 없습니다.`)
+        add_ref.current.focus();
+      } else {
         window.alert(`${add_ref.current.value}님이 존재합니다.\n친구 추가에 성공하셨습니다.`)
-        setAddFriend(false)
+        setAddFriend(false) 
         window.location.reload()
       }
     } catch(error) {
