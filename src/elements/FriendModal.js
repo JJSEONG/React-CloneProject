@@ -24,7 +24,7 @@ const FriendModal = ({ setAddFriend }) => {
   const token = sessionStorage.getItem("token")
   const addFriend = async () => {
     try {
-      const res = await axios.post("http://3.37.61.221/api/friend/new", {
+      const res = await axios.post("http://3.37.61.221:8080/api/friend/new", {
         "friendname": add_ref.current.value
       }, {
         headers: {

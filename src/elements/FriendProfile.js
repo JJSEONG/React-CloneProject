@@ -11,12 +11,11 @@ const FriendProfile = () => {
   console.log(lists)
 
   const CreateChatRoom = async (e, username) => {
-
     e.preventDefault();
     console.log(username)
     try {
       const token = sessionStorage.getItem("token")
-      const res = await axios.post("http://3.37.61.221/chatRoom/find", {
+      const res = await axios.post("http://3.37.61.221:8080/chatRoom/find", {
         "participants": username,
         "roomName": username
       }, {
@@ -25,11 +24,14 @@ const FriendProfile = () => {
         }
       })
       console.log(res.data)
-      navigate(`/${res.data}/chat`)
+
+      sessionStorage.setItem("username",res.data.username)
+
+      navigate(`/${res.data.roomId}/chat`)
     } catch(error) {
       console.log(error)
       const token = sessionStorage.getItem("token")
-      const res = await axios.post("http://3.37.61.221/chatRoom/create", {
+      const res = await axios.post("http://3.37.61.221:8080/chatRoom/create", {
         "participants": username,
         "roomName": username
       }, {
@@ -38,7 +40,10 @@ const FriendProfile = () => {
         }
       })
       console.log("create", res)
-      navigate(`/${res.data}/chat`)
+
+      sessionStorage.setItem("username",res.data.username)
+
+      navigate(`/${res.data.roomId}/chat`)
     }
   }
 

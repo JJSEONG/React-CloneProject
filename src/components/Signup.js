@@ -19,7 +19,7 @@ const Signup = () => {
   const signupName = React.useRef(null); // Name
   const signupNick = React.useRef(null); // Nickname
   const signupPw = React.useRef(null); // Password
-  const signupPwCheck = React.useRef(null); // Check Password
+  const signupPwCheck = React.useRef(null); // CheckPassword
 
   let sessionStorage = window.sessionStorage;
 
@@ -43,7 +43,7 @@ const Signup = () => {
     try {
       await axios({
         method: "post",
-        url: "http://3.37.61.221/api/user/join",
+        url: "http://3.37.61.221:8080/api/user/join",
         data: {
           username: username,
           realname: name, 
@@ -102,7 +102,7 @@ const Signup = () => {
     e.preventDefault();
     const username = signupId.current.value;
 
-    const res = await axios.post("http://3.37.61.221/api/user/username", {
+    const res = await axios.post("http://3.37.61.221:8080/api/user/username", {
       username: username
     })
     console.log(res)

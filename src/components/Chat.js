@@ -1,29 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import { over } from "stompjs";
+import Stomp from "stompjs";
+import SockJS from "sockjs-client";
 import axios from "axios";
-import Stomp from 'stompjs';
-import SockJS from 'sockjs-client';
-
-// import Stomp from 'stompjs';
-// import SockJS from 'sockjs-client';
 
 // import FriendMessage from "../elements/FriendMessage";
 // import MyMessage from "../elements/MyMessage";
 
 const Chat = () => {
+  // 소켓 연결
 
+  let stompClient = null;
+
+
+
+  
   return (
     <Wrap>
       <Title>
         <h2>이보리</h2>
       </Title>
-      <ChatBox>
-  
-      </ChatBox>
+      <ChatBox></ChatBox>
       <PostMessageBox>
         <PostMessageForm>
-          <PostMessageInput />
+          <PostMessageInput ref={message} />
           <SubmitBtn>전송</SubmitBtn>
         </PostMessageForm>
       </PostMessageBox>
@@ -70,7 +72,6 @@ const PostMessageBox = styled.div`
   position: fixed;
   bottom: 0px;
   background-color: #fff;
-
 `;
 
 const PostMessageForm = styled.form`
@@ -101,7 +102,7 @@ const SubmitBtn = styled.button`
   bottom: 15px;
   right: 8px;
   border-radius: 5px;
-  border: 1px solid #C8C8C8;
+  border: 1px solid #c8c8c8;
   color: #939393;
 `;
 
