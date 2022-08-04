@@ -30,7 +30,7 @@ const Chat = () => {
       roomId: params.roomId
     }
     stompClient.subscribe(`/sub/chat/room/${params.roomId}`, onMessageReceived);
-    // stompClient.send("pub/chat/enter", { Authorization: token, "content-type": "application/json" }, JSON.stringify(user));
+    // stompClient.send("/pub/chat/enter", { Authorization: token, "content-type": "application/json" }, JSON.stringify(user));
   }
 
   const sendMessage = (e) => {
@@ -41,14 +41,12 @@ const Chat = () => {
       roomId: params.roomId,
       message: send_txt.current.value
     }
-    // stompClient.subscribe(`/sub/chat/room`, onMessageReceived);
     stompClient.send("/pub/chat/message", { Authorization: token, "content-type": "application/json" }, JSON.stringify(message));
+    // stompClient.subscribe(`/sub/chat/room/${params.roomId}`, onMessageReceived);
   }
 
   const onMessageReceived = (payload) => {
-    // alert("!!!!")
-    // var payloadData = JSON.parse(payload);
-   console.log(payload)
+    console.log(payload)
     setChatList([...chatList, payload])
     console.log(chatList)
   }
